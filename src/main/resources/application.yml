@@ -1,6 +1,6 @@
 # 应用服务 WEB 访问端口
 server:
-  port: 6007
+  port: 80
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,25 +32,3 @@ mybatis-plus:
       logic-delete-field: isDelete
       logic-delete-value: 1
       logic-not-delete-value: 0
-captcha:
-  expire:
-    default: 10000
-    # 文字点选验证码 过期时间设置大一点
-  #    WORD_IMAGE_CLICK: 60000
-  cache:
-    enabled: true
-    cache-size: 100
-  secondary:
-    enabled: false
-  # 初始化默认的资源文件
-  init-default-resource: true
-
-logging:
-  file:
-    path: ./logging/
-    name: ctf-platform.log
-  logback:
-    rollingpolicy:
-      max-file-size: 100MB
-      max-history: 30
-      file-name-pattern: ${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log
