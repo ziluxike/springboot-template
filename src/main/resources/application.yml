@@ -1,0 +1,56 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 6007
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zhjs?useSSL=false&serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: gao123123123
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password: 123321
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  application:
+    name: ctf-platform
+  jackson:
+    default-property-inclusion: non_null # JSON处理时忽略非空字段
+  servlet:
+    multipart:
+      max-file-size: 50MB #单个文件大小
+      max-request-size: 1024MB #上传数据总大小
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto # id填充方式
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+captcha:
+  expire:
+    default: 10000
+    # 文字点选验证码 过期时间设置大一点
+  #    WORD_IMAGE_CLICK: 60000
+  cache:
+    enabled: true
+    cache-size: 100
+  secondary:
+    enabled: false
+  # 初始化默认的资源文件
+  init-default-resource: true
+
+logging:
+  file:
+    path: ./logging/
+    name: ctf-platform.log
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+      max-history: 30
+      file-name-pattern: ${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log
